@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 using SharmaMidtermB.Data;
+using System.Threading.Tasks;
 
 namespace SharmaMidtermB.Controllers {
     public class PlayerController : Controller {
@@ -15,6 +16,14 @@ namespace SharmaMidtermB.Controllers {
         public async Task<IActionResult> Index()
         {
             return View(await _context.Players.ToListAsync());
+        }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Create()
+        {
+            return View();
         }
     }
 }
