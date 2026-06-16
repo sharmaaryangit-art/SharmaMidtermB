@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SharmaMidtermB.Data;
+using SharmaMidtermB.Models;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace SharmaMidtermB.Controllers {
@@ -21,9 +23,16 @@ namespace SharmaMidtermB.Controllers {
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public IActionResult Create()
+        public IActionResult Create(Player player)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _context.Players.Add(player);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(player);
         }
+
     }
 }
