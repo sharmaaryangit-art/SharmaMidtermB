@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SharmaMidtermB.Data;
 using SharmaMidtermB.Models;
-using System.Numerics;
 using System.Threading.Tasks;
 
 namespace SharmaMidtermB.Controllers {
@@ -23,6 +22,13 @@ namespace SharmaMidtermB.Controllers {
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(Player player)
         {
             if (ModelState.IsValid)
@@ -33,6 +39,5 @@ namespace SharmaMidtermB.Controllers {
             }
             return View(player);
         }
-
     }
 }
