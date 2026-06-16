@@ -10,7 +10,6 @@ namespace SharmaMidtermB.Data
             : base(options)
         {
         }
-        //number 5
         public DbSet<Player> Players { get; set; }
     }
 }
