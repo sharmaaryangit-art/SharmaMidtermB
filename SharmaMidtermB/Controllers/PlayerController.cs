@@ -40,4 +40,5 @@ namespace SharmaMidtermB.Controllers {
             return View(player);
         }
     }
+
 }
